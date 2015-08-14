@@ -1,0 +1,29 @@
+{
+  "name": "js-chart",
+  "version": "0.1.0",
+  "description": "A javascript wrapper for drawing charts",
+  "authors": [
+    {
+      "name": "Andrea Stronati",
+      "email": "astronati@vendini.com"
+    }
+  ],
+  "ignore": [
+    ".*",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "main": [
+    "dist/js-chart.js"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "Chart.js": "~1.0.2"
+  }
+}
