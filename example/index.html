@@ -8,35 +8,80 @@
     <script src="../dist/chart.min.js"></script>
   </head>
   <body>
-    <div id="container" style="width: 500px; height: 500px"></div>
+    <div id="yOffset" style="display: none; width: 300px; height: 400px; background: green;"></div>
+    <button id="show">Mostra altro container</button>
+    <div id="container1" style="width: 500px; height: 500px"></div>
+    <div id="container2" style="width: 300px; height: 300px"></div>
+    <div id="container3" style="width: 300px; height: 300px"></div>
     <script>
       jQuery(document).ready(function($) {
-        Chart.pie('#container', [{
+        Chart.pie('#container1', [{
           value: 300,
           color: "#F7464A",
           highlight: "#FF5A5E",
           label: "Red"
         }, {
-          value: 50,
+          value: 20,
           color: "#46BFBD",
           highlight: "#5AD3D1",
           label: "Green"
+        }],
+            {
+              tooltipRadialShift: 140
+            },
+        'some text and not only'
+        );
+
+        Chart.pie('#container2', [{
+          value: 300,
+          color: "#F7464A",
+          highlight: "#FF5A5E",
+          label: "Red"
         }, {
-          value: 100,
-          color: "#FDB45C",
-          highlight: "#FFC870",
-          label: "Yellow"
-        }, {
-          value: 40,
-          color: "#949FB1",
-          highlight: "#A8B3C5",
-          label: "Grey"
-        }, {
-          value: 120,
-          color: "#4D5360",
-          highlight: "#616774",
-          label: "Dark Grey"
-        }])
+          value: 20,
+          color: "#46BFBD",
+          highlight: "#5AD3D1",
+          label: "Green"
+        }],
+            {
+              tooltipRadialShift: 100
+            },
+        "example");
+
+        Chart.pie('#container3', [{
+           value: 300,
+           color: "#F7464A",
+           highlight: "#FF5A5E",
+           label: "Red"
+         }, {
+           value: 20,
+           color: "#46BFBD",
+           highlight: "#5AD3D1",
+           label: "Green"
+         }, {
+         value: 100,
+         color: "#FDB45C",
+         highlight: "#FFC870",
+         label: "Yellow"
+         }, {
+         value: 40,
+         color: "#949FB1",
+         highlight: "#A8B3C5",
+         label: "Grey"
+         }, {
+         value: 120,
+         color: "#4D5360",
+         highlight: "#616774",
+         label: "Dark Grey"
+         }],
+            {
+              tooltipRadialShift: 100
+            },
+        "short");
+
+        $('#show').click(function() {
+          $('#yOffset').show();
+        });
       });
     </script>
   </body>

@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         port: '9001',
         base: './',
         cache: "no-store",
-        async: true
+        async: false
       },
       server: {}
     },
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['src/*.js'],
+        files: ['src/**/*'],
         tasks: ['default']
       }
     }
@@ -48,5 +48,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-devserver');
 
+  grunt.registerTask('start', ['default', 'devserver', 'watch']);
   grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
 };
