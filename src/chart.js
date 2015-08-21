@@ -19,7 +19,6 @@ var Chart = (function(document, Chart, $) {
   return {
 
     pie: function(selector, data, options, innerText) {
-
       // Setting defaults
       var _defaults = {
         tooltipTemplate: "<%= value %>",
@@ -119,6 +118,94 @@ var Chart = (function(document, Chart, $) {
       };
 
       return new Chart(ctx2).Pie(data, _settings);
+    },
+
+    stackedBars: function(selector, data, options) {
+        // Input data type checks
+        if (!($(selector) instanceof jQuery)) {
+            throw new Error("Selector supplied is not a valid jQuery selector");
+        }
+
+        if (!Array.isArray(data)) {
+            throw new Error("Input data for the stacked bars chart must be an Array");
+        }
+
+        if (typeof options !== "undefined" &&
+                typeof options !== "object") {
+            throw new Error("Charts options must be an Object");
+        }
+
+        var _data = data.slice();
+        var _height = options.height || $(selector).height();
+        var _animationTime = options.animationTime || 400;
+        var _total = 0;
+
+        if (typeof options !== "object" ||
+                typeof options.total !== "number") {
+            _data.forEach(function(item) {
+                _total += item.value;
+            });
+        }
+        else {
+            _total = options.total;
+        }
+
+        // Transforms bar elements' numerical values into % values relative to the total bar width
+        _data.forEach(function(item) {
+            item.value = currentWidth = item.value / _total * 100;
+        });
+
+        // Injects a bar div that will be parent to all the bar elements and sets chart's background color
+        $(selector)
+            .append("<div style='height: 100%; width: 100%'></div>")
+            .find("div")
+            .css("background-color", "#A8B3C5");
+        // And saves a reference to it
+        var barContainer = $(selector).children().first();
+
+        // Injects a div for each bar element with the settings supplied in the options and hides it
+        _data.forEach(function(element, index) {
+            $(barContainer)
+                .append("<div></div>")
+                .find("div")
+                .eq(index)
+                .width(0)
+                .height(_height)
+                .css({
+                    "float": "left",
+                    "background-color": element.color
+                })
+                .attr("data-bar-elem-value", element.value);
+        });
+
+        // Variables used for sequential bar elements animation
+        var _alreadyAnimated = 0;
+        var _totalToAnimate = $(barContainer).children().length;
+
+        /**
+         * Animates bar elements, one by one in the linear mode
+         *
+         * @return {[type]} [description]
+         */
+        var _animateBarElements = function() {
+            var nextBarItem = $(barContainer).children().eq(_alreadyAnimated);
+            var nextValue = nextBarItem.attr("data-bar-elem-value");
+
+            if (_alreadyAnimated < _totalToAnimate) {
+                nextBarItem.animate(
+                    { width: nextValue + "%" },
+                    nextValue * _animationTime / 100,
+                    "linear",
+                    function() {
+                        ++_alreadyAnimated;
+                        _animateBarElements(barContainer);
+                    }
+                );
+            }
+
+        };
+
+        _animateBarElements();
     }
   };
 })(document, Chart, jQuery);

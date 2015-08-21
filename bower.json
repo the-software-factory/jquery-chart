@@ -8,6 +8,16 @@
       "email": "astronati@vendini.com"
     }
   ],
+  "contributors": [
+    {
+        "name": "Luca Abbati",
+        "email": "labbati@vendini.com"
+    },
+    {
+      "name": "Alexei Liulin",
+      "email": "codwizard@gmail.com"
+    }
+  ],
   "ignore": [
     ".*",
     "**/.*",
@@ -25,5 +35,8 @@
   "license": "MIT",
   "devDependencies": {
     "Chart.js": "~1.0.2"
+  },
+  "dependencies": {
+    "jquery": "~2.1.4"
   }
 }

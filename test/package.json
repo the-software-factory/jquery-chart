@@ -1,0 +1,21 @@
+{
+  "name": "js-chart-test",
+  "version": "0.1.0",
+  "description": "A javascript wrapper for drawing charts test.",
+  "authors": [
+    {
+      "name": "Andrea Stronati",
+      "email": "astronati@vendini.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Alexei Liulin",
+      "email": "codwizard@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.0"
+  }
+}
