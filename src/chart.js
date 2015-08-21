@@ -130,6 +130,11 @@ var Chart = (function(document, Chart, $) {
             throw new Error("Input data for the stacked bars chart must be an Array");
         }
 
+        if(Array.isArray(data) &&
+                data.length === 0) {
+            throw new Error("The data array can't be empty");
+        }
+
         if (typeof options !== "undefined" &&
                 typeof options !== "object") {
             throw new Error("Charts options must be an Object");
@@ -150,10 +155,16 @@ var Chart = (function(document, Chart, $) {
             _total = options.total;
         }
 
+        var allBarsLength = 0;
+
         // Transforms bar elements' numerical values into % values relative to the total bar width
+        // and calculates the effective total bar length in %
         _data.forEach(function(item) {
             item.value = currentWidth = item.value / _total * 100;
+            allBarsLength += item.value;
         });
+
+        _total = allBarsLength;
 
         // Injects a bar div that will be parent to all the bar elements and sets chart's background color
         $(selector)
@@ -194,7 +205,7 @@ var Chart = (function(document, Chart, $) {
             if (_alreadyAnimated < _totalToAnimate) {
                 nextBarItem.animate(
                     { width: nextValue + "%" },
-                    nextValue * _animationTime / 100,
+                     nextValue * _animationTime / _total,
                     "linear",
                     function() {
                         ++_alreadyAnimated;

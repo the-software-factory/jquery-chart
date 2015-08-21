@@ -28,9 +28,15 @@ describe("JS Chart test suite", function() {
         }).toThrow();
     });
 
+    it("fires and exception if supplied data array is empty", function() {
+        expect(function() {
+            Chart.stackedBars("#barsContainer", []);
+        }).toThrow();
+    });
+
     it("fires an exception if custom options are not an object", function() {
             expect(function() {
-                Chart.stackedBars("#barsContainer", [], 123);
+                Chart.stackedBars("#barsContainer", [123], 123);
             }).toThrow();
     });
 });
