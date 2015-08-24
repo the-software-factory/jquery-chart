@@ -1,8 +1,8 @@
-# JS Chart
+# jQuery Chart
 This library is a customization of ChartJS. Furthermore it provides other charts that are missing in ChartJS.
 
 ## Installation
-You'll need [bower](http://bower.io/) to install JS Chart library and its dependencies.
+You'll need [bower](http://bower.io/) to install jQuery Chart library.
 Install the library and save it as a dependency in your project:
 ```sh
 $ bower --save install https://github.com/the-software-factory/js-chart.git
@@ -26,9 +26,11 @@ JS Chart provides 2 kinds of charts:
 ### A Pie Chart
 A Pie Chart is created like this:
 
-`Chart.pie(selector, data, options, innerText)`
+`$(selector).chart(data, options)`
 
 where
+
+`data.type = 'pie'` and
 
 #### selector
 * Type: `valid jQuery selector`
@@ -43,15 +45,11 @@ where
 [
     {
       value: 300,
-      color: "#F7464A",
-      highlight: "#FF5A5E",
-      label: "Red"
+      color: "#F7464A"
     },
     {
       value: 20,
-      color: "#46BFBD",
-      highlight: "#5AD3D1",
-      label: "Green"
+      color: "#46BFBD"
     }
 ]
 ```
@@ -61,19 +59,11 @@ where
 * Mandatory: `NO`
 * Description: An object with custom chart settings that will overwrite the default ones.
 The available options are:
-    - tooltipTemplate {string}, default: `<%= value %>`
-    - onAnimationComplete {function}, default:
-        ```
-        function() {
-          this.showTooltip(this.segments, true);
-        }
-        ```
-    - tooltipEvents {Array}, default: `[]`
-    - showTooltips {boolean}, default: `true`
-    - percentageInnerCutout {number}, default: `60`
-    - animationEasing {string}, default: `linear`
-    - animationSteps {number}, default: `20`
-    - tooltipRadialShift {number}, default: `100`
+    - animationTime {number}, default: `300`,
+    - animationEasing {string}, default: `linear`,
+	- innerTextTemplate {string}, default: ``,
+	- showTooltips {boolean}, default: `true`,
+	- tooltipTemplate {string}, default: `<%= value %>`
 
 #### innerText
 * Type: `stirng`
@@ -82,32 +72,29 @@ The available options are:
 
 Example usage:
 ```js
-    Chart.pie(
-      '#container1',
+    $(selector).chart(
       [{
         value: 300,
-        color: "#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
+        color: "#F7464A"
       }, {
         value: 20,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
+        color: "#46BFBD"
       }],
       {
-        tooltipRadialShift: 140
-      },
-      'some text and not only'
+      	type: 'pie',
+        animationTime: 1000
+      }
     );
 ```
 
 ### A Stacked Bar Chart
 A Stacked Bar Chart is created like this:
 
-`Chart.stackedBar(selector, data, options)`
+`$(selector).chart(data, options)`
 
 where
+
+`data.type = 'pie'` and
 
 #### selector
 * Type: `valid jQuery selector`
@@ -120,10 +107,10 @@ where
 * Description: An array of objects holding data for each chart area, for example:
 ```
 [
-    { value: 100, color: "#5AD3D1" },
-    { value: 75, color: "#FF5A5E" },
-    { value: 50, color: "#FFC870" },
-    { value: 333, color: "#abc123" }
+  { value: 100, color: "#5AD3D1" },
+  { value: 75, color: "#FF5A5E" },
+  { value: 50, color: "#FFC870" },
+  { value: 333, color: "#abc123" }
 ]
 ```
 
@@ -132,28 +119,26 @@ where
 * Mandatory: `NO`
 * Description: An object with custom chart settings that will overwrite the default ones.
 The available options are:
-    - total {number}
-    Total value. If not specified, it will be calculated as a sum of values provided in the data array
-    - height {number}
-    Bar height. If not specified, it will assume the value of the container specified in the selector
-    - animationTime {number}, default: 400
-    Total animation time. If not specified, will assume the default value of 400
+    - animationTime {number}, default: `300`,
+	- animationEasing {string}, default: `linear`,
+	- innerTextTemplate {string}, default: ``,
+	- showTooltips {boolean}, default: `true`,
+	- tooltipTemplate {string}, default: `<%= value %>`
 
 Example usage:
 ```js
-    Chart.stackedBars(
-        "#container4",
-        [
-            { value: 100, color: "#5AD3D1" },
-            { value: 75, color: "#FF5A5E" },
-            { value: 50, color: "#FFC870" },
-            { value: 333, color: "#abc123" }
-        ],
-        {
-            total: 1000,
-            height: 30,
-            animationTime: 750
-        }
+    $(selector).chart(
+	  [{
+        value: 300,
+        color: "#F7464A"
+      }, {
+        value: 20,
+        color: "#46BFBD"
+      }],
+      {
+       	type: 'stacked-bar',
+        animationTime: 1000
+      }
     );
 ```
 
