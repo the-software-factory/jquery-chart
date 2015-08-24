@@ -1,31 +1,18 @@
-.canvas-holder {
-	position: relative;
-}
 .chartjs-tooltip {
-	opacity: 1;
 	position: absolute;
-	color: black;
-	font-weight: bold;
-	font-size: 2em;
-	padding: 0px;
-	mergin: 0px;
+	fontSize: '0.75rem',
 	-webkit-transition: all .1s ease;
 	transition: all .1s ease;
-	pointer-events: none;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
 
-.chartjs-main-text {
+.chartjs-inner-text {
 	position: absolute;
-	color: black;
 	text-align: center;
 	font-weight: bold;
-	padding: 0px;
-	mergin: 0px;
 	-webkit-transition: all .1s ease;
 	transition: all .1s ease;
-	pointer-events: none;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }

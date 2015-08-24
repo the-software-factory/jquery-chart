@@ -1,7 +1,7 @@
 /**
  * @param {Object} Chart The ChartJS library
  */
-var Chart = (function(document, Chart, $) {
+var Charts = (function(document, Chart, $) {
 
   var chartCounter = 0;
 
@@ -220,3 +220,138 @@ var Chart = (function(document, Chart, $) {
     }
   };
 })(document, Chart, jQuery);
+
+/**
+ * @param {Object} $ The jQuery library
+ * @param {Object} Chart The ChartJS library
+ * @param {Object} document
+ */
+(function($, Chart, document) {
+
+  /**
+   * @param {Object} options (Optional)
+   * @return {selector}
+   */
+  $.fn.chart = function(data, options) {
+
+    /**
+     * @type {Object}
+     * @private
+     */
+    var _settings = $.extend({}, $.fn.chart.defaults, options);
+
+    if (options.type == 'pie') {
+      return this.each(function() {
+        var target = this;
+
+        // Set some default settings for the pie chart
+        _settings.animationSteps = _settings.animationTime * 60 / 300;
+        _settings.onAnimationComplete = function() {
+          if (_settings.showTooltips) {
+            this.showTooltip(this.segments, true);
+          }
+        };
+        _settings.percentageInnerCutout = 60;
+        _settings.tooltipEvents = [];
+        _settings.tooltipRadialShift = 140;
+
+        // Creating a div with position relative. This is because otherwise when new elements are added to the page
+        // and the chart moves around, the tooltips would remain in the old place instead of the new one.
+        var $wrapper = $('<div></div>').css('position', 'relative');
+        var $canvas = $(document.createElement('canvas')).appendTo(
+          $wrapper.appendTo(target)
+        );
+
+        $canvas.height(_settings.height ? _settings.height : $(target).height());
+        $canvas.width(_settings.width ? _settings.width : $(target).width());
+
+        // TODO the max font-size should depend by the content to avoid overflow
+        if (_settings.innerTextTemplate) {
+          var $innerText = $('<div />')
+            .text(_settings.innerTextTemplate)
+            .addClass('chartjs-inner-text')
+            .appendTo($wrapper)
+            .css({
+              left: $canvas.width() / 2 + $canvas.position().left + 'px',
+              top: $canvas.width() / 2 + $canvas.position().top + 'px'
+          });
+        }
+
+        Chart.defaults.global.customTooltips = function(tooltip) {
+          if (!tooltip) {
+            return;
+          }
+
+          // TODO The position of the tooltip should be inside the chart size, so we need to resize the chart itself
+          // TODO to match this request
+          // Tooltip Element
+          var $tooltip = $('<div />');
+          $tooltip.addClass('chartjs-tooltip').html(tooltip.text).appendTo($wrapper);
+          var deltaX = tooltip.x - $canvas.width() / 2;
+          var deltaY = tooltip.y - $canvas.height() / 2;
+          var tooltipPosition = {
+            left: tooltip.chart.canvas.offsetLeft + tooltip.x + (deltaX * _settings.tooltipRadialShift / 100 - deltaX),
+            top: tooltip.chart.canvas.offsetTop + tooltip.y + (deltaY * _settings.tooltipRadialShift / 100 - deltaY)
+          };console.log(tooltip);
+
+          // Display, position, and set styles for font
+          $tooltip.css({
+            left: tooltipPosition.left  + 'px',
+            top: tooltipPosition.top + 'px'
+          });
+        };
+
+        return new Chart($canvas[0].getContext("2d")).Pie(data, _settings);
+      });
+    }
+
+    if (options.type == 'sticked-bar') {
+      return this.each(function() {
+        // TODO
+      });
+    }
+  };
+
+  /**
+   * Plugin defaults - added as a property on our plugin function.
+   *
+   * @type {Object}
+   */
+  $.fn.chart.defaults = {
+
+    /**
+     * Time (in milliseconds) of chart animation
+     *
+     * @type {number}
+     */
+    animationTime: 120,
+
+    /**
+     * Animation easing effect
+     *
+     * @type {string}
+     */
+    animationEasing: "linear",
+
+    /**
+     * Template string within chart
+     *
+     * @type {string}
+     */
+    innerTextTemplate: "",
+
+    /**
+     * Determines whether to draw tooltips on the canvas or not
+     *
+     * @type {boolean}
+     */
+    showTooltips: true,
+
+    /**
+     * Template string for single tooltips
+     *
+     * @type {string}
+     */
+    tooltipTemplate: "<%= value %>"
+  };
+}(jQuery, Chart, document));

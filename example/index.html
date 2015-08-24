@@ -4,114 +4,154 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/Chart.js/Chart.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../dist/chart.min.css" id="classic-theme-style" />
-    <script src="../dist/chart.min.js"></script>
+    <style>
+      .wrapper {
+        padding: 10px 0;
+      }
+
+      .container {
+        border: 1px solid #ccc;
+        display: inline-block;
+        height: 300px;
+        vertical-align: middle;
+        width: 300px;
+      }
+    </style>
   </head>
   <body>
     <div id="yOffset" style="display: none; width: 300px; height: 400px; background: green;"></div>
     <button id="show">Show the other container</button>
-    <div id="container1" style="width: 500px; height: 500px"></div>
-    <div id="container2" style="width: 300px; height: 300px"></div>
-    <div id="container3" style="width: 300px; height: 300px"></div>
-    <div id="container4" style="width: 700px; height: 30px; margin-top: 2em;"></div>
-    <div id="container5" style="width: 700px; height: 30px; margin-top: 2em;"></div>
-    <script>
+    <div>
+      <div id="container0" class="container"></div>
+      <div id="container1" class="container"></div>
+      <div id="container2" class="container"></div>
+      <div id="container3" class="container"></div>
+    </div>
+
+    <div id="container4" class="container"></div>
+    <div id="container5" class="container"></div>
+
+    <script src="../dist/chart.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
       jQuery(document).ready(function($) {
-        Chart.pie('#container1', [{
-          value: 300,
-          color: "#F7464A",
-          highlight: "#FF5A5E",
-          label: "Red"
-        }, {
-          value: 20,
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Green"
-        }],
-            {
-              tooltipRadialShift: 140
-            },
-        'some text and not only'
+        $('#container0').chart(
+          [{
+            value: 3000,
+            color: "#F7464A",
+            highlight: "#FF5A5E",
+            label: "Red"
+          }, {
+            value: 2000,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Green"
+          }], {
+            type: 'pie',
+            tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
+            innerTextTemplate: '$5,000'
+          }
         );
 
-        Chart.pie('#container2', [{
-          value: 300,
-          color: "#F7464A",
-          highlight: "#FF5A5E",
-          label: "Red"
-        }, {
-          value: 20,
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Green"
-        }],
-            {
-              tooltipRadialShift: 100
-            },
-        "example");
+        Charts.pie('#container1',
+          [{
+            value: 3000,
+            color: "#F7464A",
+            highlight: "#FF5A5E",
+            label: "Red"
+          }, {
+            value: 2000,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Green"
+          }],
+          {
+            tooltipRadialShift: 140
+          },
+          'some text and not only'
+        );
 
-        Chart.pie('#container3', [{
-           value: 300,
-           color: "#F7464A",
-           highlight: "#FF5A5E",
-           label: "Red"
-         }, {
-           value: 20,
-           color: "#46BFBD",
-           highlight: "#5AD3D1",
-           label: "Green"
-         }, {
-         value: 100,
-         color: "#FDB45C",
-         highlight: "#FFC870",
-         label: "Yellow"
-         }, {
-         value: 40,
-         color: "#949FB1",
-         highlight: "#A8B3C5",
-         label: "Grey"
-         }, {
-         value: 120,
-         color: "#4D5360",
-         highlight: "#616774",
-         label: "Dark Grey"
-         }],
-            {
-              tooltipRadialShift: 100
-            },
-        "short");
+        Charts.pie('#container2',
+          [{
+            value: 300,
+            color: "#F7464A",
+            highlight: "#FF5A5E",
+            label: "Red"
+          }, {
+            value: 20,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Green"
+          }],
+          {
+            tooltipRadialShift: 100
+          },
+          "example"
+        );
+
+        Charts.pie('#container3',
+          [{
+            value: 300,
+            color: "#F7464A",
+            highlight: "#FF5A5E",
+            label: "Red"
+          }, {
+            value: 20,
+            color: "#46BFBD",
+            highlight: "#5AD3D1",
+            label: "Green"
+          }, {
+            value: 100,
+            color: "#FDB45C",
+            highlight: "#FFC870",
+            label: "Yellow"
+          }, {
+             value: 40,
+            color: "#949FB1",
+             highlight: "#A8B3C5",
+             label: "Grey"
+          }, {
+             value: 120,
+             color: "#4D5360",
+             highlight: "#616774",
+             label: "Dark Grey"
+          }],
+          {
+            tooltipRadialShift: 100
+          },
+          "short"
+        );
 
         // Stacked bars chart with custom options
-        Chart.stackedBars(
-            // Selector
-            "#container4",
-            // Data
-            [
-                { value: 100, color: "#5AD3D1" },
-                { value: 75, color: "#FF5A5E" },
-                { value: 50, color: "#FFC870" },
-                { value: 333, color: "#abc123" }
-            ],
-            // Options
-            {
-                total: 1000,
-                height: 30,
-                animationTime: 1000
-            }
+        Charts.stackedBars(
+          // Selector
+          "#container4",
+          // Data
+          [
+            { value: 100, color: "#5AD3D1" },
+            { value: 75, color: "#FF5A5E" },
+            { value: 50, color: "#FFC870" },
+            { value: 333, color: "#abc123" }
+          ],
+          // Options
+          {
+            total: 1000,
+            height: 30,
+            animationTime: 1000
+          }
         );
 
         // Stacked bars chart with default options
-        Chart.stackedBars(
-            "#container5",
-            [
-                { value: 100, color: "#5AD3D1" },
-                { value: 75, color: "#FF5A5E" },
-                { value: 50, color: "#FFC870" },
-            ],
-            {
-                animationTime: 1000
-            }
+        Charts.stackedBars(
+          "#container5",
+          [
+            { value: 100, color: "#5AD3D1" },
+            { value: 75, color: "#FF5A5E" },
+            { value: 50, color: "#FFC870" }
+          ],
+          {
+            animationTime: 1000
+          }
         );
 
         $('#show').click(function() {

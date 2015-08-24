@@ -1,5 +1,5 @@
 # JS Chart
-This library provides some custom Chart.JS charts along with some custom charts built from the ground.
+This library is a customization of ChartJS. Furthermore it provides other charts that are missing in ChartJS.
 
 ## Installation
 You'll need [bower](http://bower.io/) to install JS Chart library and its dependencies.
@@ -9,8 +9,10 @@ $ bower --save install https://github.com/the-software-factory/js-chart.git
 ```
 
 ## Usage
-To use the library you should first include it in your project, define an element that will host the chart,
-for example a `<div></div>`, and set its width and height.
+To use the library you should first include it in your project, define an element that will host the chart and set its
+width and height if needed.
+
+NOTE: Its width and height can be also set through a CSS class or inline.
 
 ```html
 <div id="container1" style="width: 500px; height: 500px"></div>
@@ -35,7 +37,7 @@ where
 
 #### data
 * Type: `Array`
-* Mandatory: `YES`
+* Mandatory: `NO`
 * Description: An array of objects holding data for each chart area, for example:
 ```
 [
@@ -80,28 +82,30 @@ The available options are:
 
 Example usage:
 ```js
-    Chart.pie('#container1', [{
-      value: 300,
-      color: "#F7464A",
-      highlight: "#FF5A5E",
-      label: "Red"
-    }, {
-      value: 20,
-      color: "#46BFBD",
-      highlight: "#5AD3D1",
-      label: "Green"
-    }],
-        {
-          tooltipRadialShift: 140
-        },
-    'some text and not only'
+    Chart.pie(
+      '#container1',
+      [{
+        value: 300,
+        color: "#F7464A",
+        highlight: "#FF5A5E",
+        label: "Red"
+      }, {
+        value: 20,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Green"
+      }],
+      {
+        tooltipRadialShift: 140
+      },
+      'some text and not only'
     );
 ```
 
-### A Stacked Bars Chart
+### A Stacked Bar Chart
 A Stacked Bar Chart is created like this:
 
-`Chart.stackedBars(selector, data, options)`
+`Chart.stackedBar(selector, data, options)`
 
 where
 
@@ -112,7 +116,7 @@ where
 
 #### data
 * Type: `Array`
-* Mandatory: `YES`
+* Mandatory: `NO`
 * Description: An array of objects holding data for each chart area, for example:
 ```
 [
@@ -125,13 +129,13 @@ where
 
 #### options
 * Type: `Object`
-* Mandatory: `YES`
+* Mandatory: `NO`
 * Description: An object with custom chart settings that will overwrite the default ones.
 The available options are:
     - total {number}
-    Total bar length. If not specified, it will be calculated as a sum of bar sections provided in the data array
+    Total value. If not specified, it will be calculated as a sum of values provided in the data array
     - height {number}
-    Bar height. If not specified, will assume the value of the container specified in the selector
+    Bar height. If not specified, it will assume the value of the container specified in the selector
     - animationTime {number}, default: 400
     Total animation time. If not specified, will assume the default value of 400
 

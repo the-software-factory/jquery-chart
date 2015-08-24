@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     },
     devserver: {
       options: {
-        port: '9001',
+        port: '9000',
         base: './',
         cache: "no-store",
         async: false
