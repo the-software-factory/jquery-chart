@@ -1,4 +1,6 @@
 var execSync = require('child_process').execSync;
+var exec = require('child_process').exec;
+var fs = require('fs');
 
 // Defines build process
 module.exports = function(grunt) {

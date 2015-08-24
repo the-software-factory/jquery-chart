@@ -181,7 +181,7 @@ var Charts = (function(document, Chart, $) {
                 .find("div")
                 .eq(index)
                 .width(0)
-                .height(_height)
+                .height(100)
                 .css({
                     "float": "left",
                     "background-color": element.color
@@ -307,7 +307,96 @@ var Charts = (function(document, Chart, $) {
 
     if (options.type == 'sticked-bar') {
       return this.each(function() {
-        // TODO
+        var target = this;
+        var total = 0;
+        var height;
+
+        if (!Array.isArray(data)) {
+            throw new Error("Input data for the stacked bars chart must be an Array");
+        }
+
+        if(Array.isArray(data) &&
+                data.length === 0) {
+            throw new Error("The data array can't be empty");
+        }
+
+        if (typeof _settings.total === "number") {
+          total = _settings.total;
+        }
+        else {
+          data.forEach(function(item) {
+              total += item.value;
+          });
+        }
+
+        if (typeof _settings.height === "number") {
+          height = _settings.height;
+        }
+        else {
+          height = $(target).height();
+        }
+
+        var allBarsLength = 0;
+
+        // Transforms bar elements' numerical values into % values relative to the total bar width
+        // and calculates the effective total bar length in %
+        data.forEach(function(item) {
+            item.value = currentWidth = item.value / total * 100;
+            allBarsLength += item.value;
+        });
+
+        total = allBarsLength;
+
+        // Injects a bar div that will be parent to all the bar elements and sets chart's background color
+        $(target)
+            .append("<div style='height: " + height + "px; width: 100%'></div>")
+            .find("div");
+        // And saves a reference to it
+        var barContainer = $(target).children().first();
+
+        // Injects a div for each bar element with the settings supplied in the options and hides it
+        data.forEach(function(element, index) {
+            $(barContainer)
+                .append("<div></div>")
+                .find("div")
+                .eq(index)
+                .width(0)
+                .height($(barContainer).height())
+                .css({
+                    "float": "left",
+                    "background-color": element.color
+                })
+                .attr("data-bar-elem-value", element.value);
+        });
+
+        // Variables used for sequential bar elements animation
+        var alreadyAnimated = 0;
+        var totalToAnimate = $(barContainer).children().length;
+
+        /**
+         * Animates bar elements, one by one in the linear mode
+         *
+         * @return {[type]} [description]
+         */
+        var animateBarElements = function() {
+            var nextBarItem = $(barContainer).children().eq(alreadyAnimated);
+            var nextValue = nextBarItem.attr("data-bar-elem-value");
+
+            if (alreadyAnimated < totalToAnimate) {
+                nextBarItem.animate(
+                    { width: nextValue + "%" },
+                     nextValue * _settings.animationTime / total,
+                    _settings.animationEasing,
+                    function() {
+                        ++alreadyAnimated;
+                        animateBarElements(barContainer);
+                    }
+                );
+            }
+
+        };
+
+        animateBarElements();
       });
     }
   };

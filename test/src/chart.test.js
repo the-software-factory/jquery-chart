@@ -1,8 +1,7 @@
 describe("JS Chart test suite", function() {
 
     // Fixtures
-    var _pieChartFixture = "<div id='pieContainer' style='width: 500px; height: 500px'></div>";
-    var _stackedBarsChartFixture = "<div id='barsContainer' style='width: 700px; height: 30px;'></div>";
+    var _chartFixture = "<div class='chart_container' style='width: 300px; height: 300px'></div>";
 
     var _stackedBarsChartDataset = [
         { value: 100, color: "#5AD3D1" },
@@ -12,14 +11,7 @@ describe("JS Chart test suite", function() {
 
     beforeEach(function() {
         $("body").empty();
-        $("body").append(_pieChartFixture);
-        $("body").append(_stackedBarsChartFixture);
-    });
-
-    it("fires an exception if an invalid selector was supplied", function() {
-        expect(function() {
-            Chart.stackedBars(123);
-        }).toThrow();
+        $("body").append(_chartFixture);
     });
 
     it("fires and exception if data supplied is not an array", function() {
@@ -32,11 +24,5 @@ describe("JS Chart test suite", function() {
         expect(function() {
             Chart.stackedBars("#barsContainer", []);
         }).toThrow();
-    });
-
-    it("fires an exception if custom options are not an object", function() {
-            expect(function() {
-                Chart.stackedBars("#barsContainer", [123], 123);
-            }).toThrow();
     });
 });
