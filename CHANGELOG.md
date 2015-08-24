@@ -9,6 +9,7 @@
 
 ### Features
 
+* Converted entire project into a jQuery plugin [2cdf230](https://github.com/the-software-factory/js-chart/commit/2cdf230fa0dbdb4ef681c17600a7fd9be5c4a316) 
 * Migrated JSChart to a jQuery plugin, updated README.md and example page [3568a4e](https://github.com/the-software-factory/js-chart/commit/3568a4e9de397176af15430f2dd0e3628b2db0a6) 
 * Stacked Bars Chart added, READMEs added, tests set up, Grunt tasks updated [c5586c6](https://github.com/the-software-factory/js-chart/commit/c5586c6f7d69b4c99ef2cb428e6b31105383ad25) 
 
