@@ -5,6 +5,7 @@
 	transition: all .1s ease;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+  z-index: 20;
 }
 
 .chartjs-inner-text {
