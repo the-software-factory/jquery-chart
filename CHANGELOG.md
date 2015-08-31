@@ -1,5 +1,5 @@
 <a name="0.2.0"></a>
-# [0.2.0](//compare/0.3.0...v0.2.0) (2015-08-25)
+# [0.2.0](//compare/0.3.0...v0.2.0) (2015-08-31)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 
 ### Features
 
+* Automatuc font size adaptation added 7ff10bf
 * Converted entire project into a jQuery plugin 2cdf230
 * Grunt changelog task modified 3d492dc
 * Migrated JSChart to a jQuery plugin, updated README.md and example page 3568a4e
