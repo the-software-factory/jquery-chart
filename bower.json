@@ -10,8 +10,8 @@
   ],
   "contributors": [
     {
-        "name": "Luca Abbati",
-        "email": "labbati@vendini.com"
+      "name": "Luca Abbati",
+      "email": "labbati@vendini.com"
     },
     {
       "name": "Alexei Liulin",
@@ -34,7 +34,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "Chart.js": "~1.0.2"
+    "Chart.js": "~1.0.2",
+    "jquery.boxfit": "~1.2.4"
   },
   "dependencies": {
     "jquery": "~2.1.4"

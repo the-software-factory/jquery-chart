@@ -85,6 +85,22 @@
           });
         };
 
+        // Automatically adapts the font-size to make the inner text fit the space inside the doughnut
+
+        // Calculates the width of the space inside the doughnut
+        var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout;
+        // Gets the inner text DIV container
+        var innerTextContainer = $(this).find(".chartjs-inner-text");
+        // Sets the width of the innerTextContainer to which the font size will be adaptated
+        innerTextContainer.width(innerTextContainerMaxWidth);
+        // Set the height of the innerTextContainer so the text with max font size would fit it
+        innerTextContainer.height(30);
+        // Apply the font size adaptation plugin to the inner text container DIV
+        innerTextContainer.boxfit({
+          maximum_font_size: '30px',
+          minimum_font_size: '5px'
+        });
+
         return new Chart($canvas[0].getContext("2d")).Pie(data, _settings);
       });
     }

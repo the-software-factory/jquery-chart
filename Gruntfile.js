@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     uglify: {
       minification: {
         files: {
-          'dist/chart.min.js': ['bower_components/Chart.js/Chart.min.js', 'src/chart.js']
+          'dist/chart.min.js': ['bower_components/Chart.js/Chart.min.js', 'bower_components/jquery.boxfit/dist/jquery.boxfit.min.js', 'src/chart.js']
         }
       }
     },
