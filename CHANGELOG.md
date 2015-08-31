@@ -1,5 +1,11 @@
-<a name="0.2.0"></a>
-# [0.2.0](//compare/0.3.0...v0.2.0) (2015-08-31)
+<a name="0.3.0"></a>
+# [0.3.0](//compare/0.3.0...v0.3.0) (2015-08-31)
+
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](//compare/0.2.0...0.3.0) (2015-08-31)
 
 
 ### Bug Fixes
@@ -14,6 +20,7 @@
 * Grunt changelog task modified 3d492dc
 * Migrated JSChart to a jQuery plugin, updated README.md and example page 3568a4e
 * New tests added; test/README.md added 50c27e5
+* Released version 0.3.0 0a622c7
 * Stacked Bars Chart added, READMEs added, tests set up, Grunt tasks updated c5586c6
 
 
