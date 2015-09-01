@@ -1,5 +1,5 @@
 /*
- * JS Chart v0.2.0 (https://github.com/the-software-factory/js-chart)
+ * JS Chart v0.4.0 (https://github.com/the-software-factory/js-chart)
  * Copyright 2015 Vendini srl
  * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)
  */
