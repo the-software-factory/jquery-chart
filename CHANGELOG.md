@@ -9,6 +9,7 @@
 ### Features
 
 * Travis YML file added, banners updated d64a550
+* TravisCI badge prepended to README.md 3a73e50
 
 
 
