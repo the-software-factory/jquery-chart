@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/the-software-factory/jquery-chart.svg?branch=master)](https://travis-ci.org/the-software-factory/jquery-chart)
+
 # jQuery Chart
 This library is a customization of ChartJS. Furthermore it provides other charts that are missing in ChartJS.
 
