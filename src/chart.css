@@ -1,19 +1,15 @@
 .chartjs-tooltip {
-	position: absolute;
-	fontSize: '0.75rem',
-	-webkit-transition: all .1s ease;
-	transition: all .1s ease;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-  z-index: 20;
+    position: absolute;
+    fontSize: '0.75rem',
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 20;
 }
 
 .chartjs-inner-text {
-	position: absolute;
-	text-align: center;
-	font-weight: bold;
-	-webkit-transition: all .1s ease;
-	transition: all .1s ease;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
 }

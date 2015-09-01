@@ -49,7 +49,6 @@
         $canvas.height(_settings.height ? _settings.height : $(target).height());
         $canvas.width(_settings.width ? _settings.width : $(target).width());
 
-        // TODO the max font-size should depend by the content to avoid overflow
         if (_settings.innerTextTemplate) {
           var $innerText = $('<div />')
             .text(_settings.innerTextTemplate)
@@ -87,6 +86,9 @@
 
         // Automatically adapts the font-size to make the inner text fit the space inside the doughnut
 
+        // Maximum (and default) font size
+        var maxFontSize = 30;
+
         // Calculates the width of the space inside the doughnut
         var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout;
         // Gets the inner text DIV container
@@ -94,11 +96,19 @@
         // Sets the width of the innerTextContainer to which the font size will be adaptated
         innerTextContainer.width(innerTextContainerMaxWidth);
         // Set the height of the innerTextContainer so the text with max font size would fit it
-        innerTextContainer.height(30);
+        innerTextContainer.height(maxFontSize);
         // Apply the font size adaptation plugin to the inner text container DIV
         innerTextContainer.boxfit({
-          maximum_font_size: '30px',
+          maximum_font_size: maxFontSize + "px",
           minimum_font_size: '5px'
+        });
+
+        // Center the inner text
+        innerTextContainer.css({
+          left: "50%",
+          top: "50%",
+          "margin-top": "-" + innerTextContainer.height()/2 + "px",
+          "margin-left": -(innerTextContainerMaxWidth / 2)
         });
 
         return new Chart($canvas[0].getContext("2d")).Pie(data, _settings);

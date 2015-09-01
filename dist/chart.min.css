@@ -3,4 +3,4 @@
  * Copyright 2015 Vendini srl
  * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)
  */
-.chartjs-tooltip{position:absolute;fontSize:'0.75rem',-webkit-transition: all .1s ease;transition:all .1s ease;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:20}.chartjs-inner-text{position:absolute;text-align:center;font-weight:700;-webkit-transition:all .1s ease;transition:all .1s ease;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}
+.chartjs-tooltip{position:absolute;fontSize:'0.75rem',-webkit-transition: all .1s ease;transition:all .1s ease;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:20}.chartjs-inner-text{position:absolute;text-align:center;font-weight:700}
