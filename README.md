@@ -9,8 +9,8 @@ $ bower --save install https://github.com/the-software-factory/js-chart.git
 ```
 
 ## Usage
-To use the library you should first include it in your project, define an element that will host the chart and set its
-width and height if needed.
+To use the library you should first include jQuery in your project, after that you should include jQuery Chart,
+define an element that will host the chart and set its width and height if needed.
 
 NOTE: Its width and height can be also set through a CSS class or inline.
 
@@ -30,7 +30,7 @@ A Pie Chart is created like this:
 
 where
 
-`data.type = 'pie'` and
+`options.type = 'pie'` and
 
 #### selector
 * Type: `valid jQuery selector`
@@ -39,8 +39,20 @@ where
 
 #### data
 * Type: `Array`
-* Mandatory: `NO`
+* Mandatory: `YES`
 * Description: An array of objects holding data for each chart area, for example:
+
+Each data object should have the following data defined:
+
+- value
+    + Type: `Number`
+    + Description: A chart segment (area) will assume the size proportional to its value
+- color
+    + Type: `String`
+    + Description: The color of a chart segment (area). It can the either HEX color code
+    preceded by a # or a valid HTML color name
+
+
 ```
 [
     {
@@ -58,17 +70,31 @@ where
 * Type: `Object`
 * Mandatory: `NO`
 * Description: An object with custom chart settings that will overwrite the default ones.
-The available options are:
-    - animationTime {number}, default: `300`,
-    - animationEasing {string}, default: `linear`,
-	- innerTextTemplate {string}, default: ``,
-	- showTooltips {boolean}, default: `true`,
-	- tooltipTemplate {string}, default: `<%= value %>`
 
-#### innerText
-* Type: `stirng`
-* Mandatory: `NO`
-* Description: If defined, the innerText will be placed inside the Pie Chart
+The available options are:
+
+- animationTime
+    + Type: `Number`
+    + Default: `300`
+    + Description: Time in which the chart will finish its animation and will assume the definitive look
+- animationEasing
+    + Type: `String`
+    + Default: `linear`
+    + Description: Describes the animation type. Available values are `swing` and `linear`
+- innerTextTemplate
+    + Type: `String`
+    + Default: ``
+    + Description: The text to display in the blank space in the middle of the pie chart. The template string should following
+    the ChartJS template string standards
+- showTooltips
+    + Type: `Boolean`
+    + Default: `TRUE`
+    + Description: Indicates if to displat the chart sections descriptions or not.
+- tooltipTemplate
+    + Type: `String`
+    + Default: `<%= value %>`
+    + Description: The text to display near the chart areas. The template string should following
+    the ChartJS template string standards. By default it will display the chart area value.
 
 Example usage:
 ```js
@@ -94,7 +120,7 @@ A Stacked Bar Chart is created like this:
 
 where
 
-`data.type = 'pie'` and
+`data.type = 'stacked-bar'` and
 
 #### selector
 * Type: `valid jQuery selector`
@@ -103,14 +129,30 @@ where
 
 #### data
 * Type: `Array`
-* Mandatory: `NO`
+* Mandatory: `YES`
 * Description: An array of objects holding data for each chart area, for example:
+
+Each data object should have the following data defined:
+
+- value
+    + Type: `Number`
+    + Description: A chart segment (area) will assume the size proportional to its value
+- color
+    + Type: `String`
+    + Description: The color of a chart segment (area). It can the either HEX color code
+    preceded by a # or a valid HTML color name
+
+
 ```
 [
-  { value: 100, color: "#5AD3D1" },
-  { value: 75, color: "#FF5A5E" },
-  { value: 50, color: "#FFC870" },
-  { value: 333, color: "#abc123" }
+    {
+      value: 300,
+      color: "#F7464A"
+    },
+    {
+      value: 20,
+      color: "#46BFBD"
+    }
 ]
 ```
 
@@ -118,12 +160,17 @@ where
 * Type: `Object`
 * Mandatory: `NO`
 * Description: An object with custom chart settings that will overwrite the default ones.
+
 The available options are:
-    - animationTime {number}, default: `300`,
-	- animationEasing {string}, default: `linear`,
-	- innerTextTemplate {string}, default: ``,
-	- showTooltips {boolean}, default: `true`,
-	- tooltipTemplate {string}, default: `<%= value %>`
+
+- animationTime
+    + Type: `Number`
+    + Default: `300`
+    + Description: Time in which the chart will finish its animation and will assume the definitive look
+- animationEasing
+    + Type: `String`
+    + Default: `linear`
+    + Description: Describes the animation type. Available values are `swing` and `linear`
 
 Example usage:
 ```js
