@@ -2,6 +2,10 @@
 # [0.4.0](//compare/0.4.0...v0.4.0) (2015-09-01)
 
 
+### Bug Fixes
+
+* README corrected and Updated bfd9900
+
 ### Features
 
 * Travis YML file added, banners updated d64a550
