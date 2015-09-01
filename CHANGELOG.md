@@ -2,6 +2,10 @@
 # [0.4.0](//compare/0.4.0...v0.4.0) (2015-09-01)
 
 
+### Features
+
+* Travis YML file added, banners updated d64a550
+
 
 
 <a name="0.4.0"></a>
@@ -10,9 +14,18 @@
 
 ### Bug Fixes
 
+* Inner text vertical alignment fixed; Version 0.4.0 released d1d8225
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](//compare/0.2.0...0.3.0) (2015-08-31)
+
+
+### Bug Fixes
+
 * Animation time bug fixed, Empty data array check added, Empty data test added 78f4125
 * Bar chart height bug fixed, Grunt changelog task fixed, refactoring to jQuery plugin done, tests updated, example page updated 0424bd2
-* Inner text vertical alignment fixed; Version 0.4.0 released d1d8225
 
 ### Features
 
