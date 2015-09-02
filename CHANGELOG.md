@@ -1,5 +1,5 @@
 <a name="0.4.0"></a>
-# [0.4.0](//compare/0.4.0...v0.4.0) (2015-09-01)
+# [0.4.0](//compare/0.4.0...v0.4.0) (2015-09-02)
 
 
 ### Bug Fixes
@@ -8,6 +8,7 @@
 
 ### Features
 
+* README corrected and updated, Bower added files to ignore e92e62b
 * Travis YML file added, banners updated d64a550
 * TravisCI badge prepended to README.md 3a73e50
 
