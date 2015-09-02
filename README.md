@@ -34,15 +34,10 @@ where
 
 `options.type = 'pie'` and
 
-#### selector
-* Type: `valid jQuery selector`
-* Mandatory: `YES`
-* Description: A selector for the element that will host the chart, for example: `#container1`
-
 #### data
 * Type: `Array`
 * Mandatory: `YES`
-* Description: An array of objects holding data for each chart area, for example:
+* Description: An array of objects holding data for each chart area
 
 Each data object should have the following data defined:
 
@@ -54,7 +49,7 @@ Each data object should have the following data defined:
     + Description: The color of a chart segment (area). It can the either HEX color code
     preceded by a # or a valid HTML color name
 
-
+Example of the data array:
 ```
 [
     {
@@ -82,23 +77,33 @@ The available options are:
 - animationEasing
     + Type: `String`
     + Default: `linear`
-    + Description: Describes the animation type. Available values are `swing` and `linear`
+    + Description: Animation type. Available values are `swing` and `linear`
 - innerTextTemplate
     + Type: `String`
-    + Default: ``
+    + Default: `Empty string`
     + Description: The text to display in the blank space in the middle of the pie chart. The template string should following
-    the ChartJS template string standards
+    the ChartJS template string standards. The inner text will be automatically centered and resized so it always fits the
+    blank space in the middle of the doughnut. It's always displayd as a single line text
 - showTooltips
     + Type: `Boolean`
     + Default: `TRUE`
-    + Description: Indicates if to displat the chart sections descriptions or not.
+    + Description: Indicates if to display the chart sections' description or not.
 - tooltipTemplate
     + Type: `String`
     + Default: `<%= value %>`
     + Description: The text to display near the chart areas. The template string should following
     the ChartJS template string standards. By default it will display the chart area value.
+- height
+    + Type: `Number`
+    + Default: Chart container's height
+    + Description: The height of the chart in pixels
+- width
+    + Type: `Number`
+    + Default: Chart container's width
+    + Description: The width of the chart in pixels
 
-Example usage:
+
+#### Example Pie chart usage:
 ```js
     $(selector).chart(
       [{
@@ -122,17 +127,12 @@ A Stacked Bar Chart is created like this:
 
 where
 
-`data.type = 'stacked-bar'` and
-
-#### selector
-* Type: `valid jQuery selector`
-* Mandatory: `YES`
-* Description: A selector for the element that will host the chart, for example: `#container1`
+`options.type = 'stacked-bar'` and
 
 #### data
 * Type: `Array`
 * Mandatory: `YES`
-* Description: An array of objects holding data for each chart area, for example:
+* Description: An array of objects holding data for each chart area
 
 Each data object should have the following data defined:
 
@@ -144,7 +144,7 @@ Each data object should have the following data defined:
     + Description: The color of a chart segment (area). It can the either HEX color code
     preceded by a # or a valid HTML color name
 
-
+Example of the data array:
 ```
 [
     {
@@ -173,8 +173,18 @@ The available options are:
     + Type: `String`
     + Default: `linear`
     + Description: Describes the animation type. Available values are `swing` and `linear`
+- total
+    + Type: `Number`
+    + Default: The sum of the chart area values supplied in the `data` object
+    + Description: The total width of the Stacked Bar chart. If the sum of all the chart values is less then total,
+    then there will be some blank space left in the end of the chart. The bars container's width will always be equal to `total`.
+- height
+    + Type: `Number`
+    + Default: Chart container's height
+    + Description: The height of the chart in pixels
 
-Example usage:
+
+#### Example Stacked Bar chart usage:
 ```js
     $(selector).chart(
 	  [{

@@ -25,9 +25,12 @@
     "bower_components",
     "test",
     "tests",
-    "src",
     "Gruntfile.js",
-    "package.json"
+    "package.json",
+    "example",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "README.md"
   ],
   "main": [
     "dist/js-chart.js"
