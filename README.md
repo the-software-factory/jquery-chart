@@ -93,6 +93,38 @@ The available options are:
     + Default: `<%= value %>`
     + Description: The text to display near the chart areas. The template string should following
     the ChartJS template string standards. By default it will display the chart area value.
+- skipTooltip
+    + Type: `function`
+    + Default: Doesn't create a tooltip if it's `0%`
+    + Description: This is the filter function that allows you to specify whether to skip or not a tooltip for each chart area. It receives a ChartJS tooltip object, analyzes it, and then returns true or false. If the 'true' value is returned then the tooltip for that particular chart area won't be created. Here is an example with the default skipTooltip function that skips the `0%` tooltips:
+```js
+$(selector).chart(
+  [...],
+  {
+    type: 'pie',
+    skipTooltip: function(tooltip) {
+      if (Number.parseInt(tooltip.text.replace('%', '')) === 0) {
+        return true;
+      }
+    }
+  }
+);
+```
+
+If you want to display all the tooltips:
+```js
+$(selector).chart(
+  [...],
+  {
+    type: 'pie',
+    skipTooltip: function() { return false; }
+  }
+);
+```
+- skipIfEmpty
+    + Type: `boolean`
+    + Default: `TRUE`
+    + Description: Determines whether to skip or not empty charts (with the sum of all the values is 0). When the chart is skipped that means that no DOM manipulation happens at all, the plugin just return the result set.
 - height
     + Type: `Number`
     + Default: Chart container's height

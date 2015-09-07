@@ -11,9 +11,18 @@
    */
   $.fn.chart = function(data, options) {
 
+    if (typeof data === 'undefined') {
+      throw new Error('jQuery Chart requries a data array');
+    }
+
     if (data &&
         !Array.isArray(data)) {
       throw new Error("'data' parameter must be an Array");
+    }
+
+    if (typeof options !== 'object' ||
+        typeof options.type !== 'string') {
+      throw new Error('jQuery Chart requires a chart type option to be set');
     }
 
     // TODO Add control on data values
@@ -24,6 +33,22 @@
      */
     var _settings = $.extend({}, $.fn.chart.defaults, options);
 
+    /**
+     * The sum of the values of all the chart's sections
+     *
+     * @type {Number}
+     */
+    var _total = 0;
+
+    data.forEach(function(item) {
+      _total += item.value;
+    });
+
+    // If the chart is empty and skipIfEmpty options is set to 'true' then don't do anything
+    if (_total === 0 && _settings.skipIfEmpty) {
+      return this;
+    }
+
     if (options.type == 'pie') {
       return this.each(function() {
         var target = this;
@@ -32,6 +57,15 @@
         _settings.animationSteps = _settings.animationTime / 18;
         _settings.onAnimationComplete = function() {
           if (_settings.showTooltips) {
+            var chartOptions = this;
+            // Remove tooltips for segments with zero value
+
+            $.each(chartOptions.segments, function(segmentIndex) {
+              if (this.value === 0) {
+                chartOptions.segments.splice(segmentIndex, 1);
+              }
+            });
+
             this.showTooltip(this.segments, true);
           }
         };
@@ -61,7 +95,7 @@
         }
 
         Chart.defaults.global.customTooltips = function(tooltip) {
-          if (!tooltip) {
+          if (!tooltip || _settings.skipTooltip(tooltip)) {
             return;
           }
 
@@ -225,6 +259,27 @@
      *
      * @type {string}
      */
-    tooltipTemplate: "<%= value %>"
+    tooltipTemplate: "<%= value %>",
+
+    /**
+     * Determines whether to skip or not a particular tooltip. When the tooltip
+     * is 'skipped', it is not being inserted in the chart at all.
+     *
+     * @param  {Object} tooltip A ChartJS tooltip object
+     * @return {boolean} Doesn't create the tooltip if 'true' if returned
+     */
+    skipTooltip: function(tooltip) {
+      if (Number.parseInt(tooltip.text.replace('%', '')) === 0) {
+        return true;
+      }
+    },
+
+    /**
+     * Determines whether to skip or not empty charts. When the chart is skipped,
+     * no DOM manipulations happens at all - the plugin simply return the result set.
+     *
+     * @type {boolean}
+     */
+    skipIfEmpty: true
   };
 }(jQuery, Chart, document));

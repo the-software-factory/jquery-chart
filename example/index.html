@@ -26,11 +26,13 @@
     <div>
       <div id="container0" class="container"></div>
       <div id="container1" class="container"></div>
+      <div id="container2" class="container"></div>
     </div>
 
     <div>
-      <div id="container2" class="container"></div>
-      <div id="container3" class="container" style="height: 30px"></div>
+      <div id="container3" class="container"></div>
+      <div id="container4" class="container" style="height: 30px;"></div>
+      <div id="container5" class="container"></div>
     </div>
 
     <script src="../dist/chart.min.js" type="text/javascript"></script>
@@ -44,11 +46,15 @@
           }, {
             value: 2000,
             color: "#46BFBD"
+          }, {
+            value: 1,
+            color: "#ba0"
           }], {
             type: 'pie',
             tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
             innerTextTemplate: '$5,000',
-            animationTime: 1000
+            animationTime: 1000,
+            skipTooltip: function() { return false; }
           }
         );
 
@@ -59,6 +65,12 @@
             }, {
               value: 2000,
               color: "#46BFBD"
+            }, {
+              value: 0,
+              color: "#bbb"
+            }, {
+              value: 1,
+              color: "#ba0"
             }], {
               type: 'pie',
               tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
@@ -66,7 +78,17 @@
             }
         );
 
-        $('#container2').chart(
+        $('#container2').chart([{
+          value: 0,
+          color: "gray"
+        }], {
+          type: 'pie',
+          tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
+          innerTextTemplate: '$0.00',
+          total: 0
+        });
+
+        $('#container3').chart(
           [
             { value: 100, color: "#abc123" },
             { value: 75, color: "#46BFBD" },
@@ -79,7 +101,7 @@
           }
         );
 
-        $("#container3").chart(
+        $("#container4").chart(
           [
             { value: 100, color: "#abc123" },
             { value: 75, color: "#46BFBD" },
@@ -91,8 +113,12 @@
           }
         );
 
-        $('#show').click(function() {
-          $('#yOffset').show();
+        $('#container5').chart([
+          { value: 0, color: "#abc123" }
+        ],
+        {
+          type: "stacked-bar",
+          height: 30
         });
       });
     </script>
