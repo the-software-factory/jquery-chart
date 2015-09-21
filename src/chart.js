@@ -95,7 +95,7 @@
         }
 
         Chart.defaults.global.customTooltips = function(tooltip) {
-          if (!tooltip || _settings.skipTooltip(tooltip)) {
+          if (!tooltip || Number.parseInt(tooltip.text.replace('%', '')) === 0) {
             return;
           }
 
@@ -260,19 +260,6 @@
      * @type {string}
      */
     tooltipTemplate: "<%= value %>",
-
-    /**
-     * Determines whether to skip or not a particular tooltip. When the tooltip
-     * is 'skipped', it is not being inserted in the chart at all.
-     *
-     * @param  {Object} tooltip A ChartJS tooltip object
-     * @return {boolean} Doesn't create the tooltip if 'true' if returned
-     */
-    skipTooltip: function(tooltip) {
-      if (Number.parseInt(tooltip.text.replace('%', '')) === 0) {
-        return true;
-      }
-    },
 
     /**
      * Determines whether to skip or not empty charts. When the chart is skipped,
