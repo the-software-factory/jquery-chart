@@ -1,10 +1,11 @@
 <a name="0.5.0"></a>
-# [0.5.0](//compare/0.5.0...v0.5.0) (2015-09-08)
+# [0.5.0](//compare/0.5.0...v0.5.0) (2015-09-21)
 
 
 ### Bug Fixes
 
 * Changelog hashes are now clickable links to respective GitHub pages [48de067](https://github.com/the-software-factory/jquery-chart/commit/48de06799c1d6b09b8f9b24588f5f27cec67f897) 
+* Removed skipTooltip options. [425c46b](https://github.com/the-software-factory/jquery-chart/commit/425c46b745118b2c82eeff7484ab1d1d15be3009) 
 
 
 
