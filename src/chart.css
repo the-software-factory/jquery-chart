@@ -20,3 +20,12 @@
   -webkit-transition: height 1s;
   transition: height 1s;
 }
+
+[data-pie-chart] > * {
+  border-right: 2px solid white;
+  box-sizing: border-box;
+}
+
+[data-pie-chart] > *:last-of-type {
+  border-right: 0;
+}

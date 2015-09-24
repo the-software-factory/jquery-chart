@@ -1,6 +1,6 @@
 /*
- * JS Chart v0.6.0 (https://github.com/the-software-factory/js-chart)
+ * JS Chart v0.7.0 (https://github.com/the-software-factory/js-chart)
  * Copyright 2015 Vendini srl
  * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)
  */
-.chartjs-tooltip{position:absolute;fontSize:'0.75rem',-webkit-transition: all .1s ease;transition:all .1s ease;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:20}.chartjs-inner-text{position:absolute;text-align:center;font-weight:600}[data-pie-chart]{-o-transition:height 1s;-moz-transition:height 1s;-webkit-transition:height 1s;transition:height 1s}
+.chartjs-tooltip{position:absolute;fontSize:'0.75rem',-webkit-transition: all .1s ease;transition:all .1s ease;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:20}.chartjs-inner-text{position:absolute;text-align:center;font-weight:600}[data-pie-chart]{-o-transition:height 1s;-moz-transition:height 1s;-webkit-transition:height 1s;transition:height 1s}[data-pie-chart]>*{border-right:2px solid #fff;box-sizing:border-box}[data-pie-chart]>:last-of-type{border-right:0}
