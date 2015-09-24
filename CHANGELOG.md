@@ -1,5 +1,15 @@
 <a name="0.6.0"></a>
-# [0.6.0](//compare/0.5.0...v0.6.0) (2015-09-21)
+# [0.6.0](//compare/0.6.0...v0.6.0) (2015-09-24)
+
+
+### Bug Fixes
+
+* Set chart's inner text boldness to 600; Update the dist files [193b6c4](https://github.com/the-software-factory/jquery-chart/commit/193b6c49072c3b2d99e394a653e4b5c7b671934e) 
+
+
+
+<a name="0.6.0"></a>
+# [0.6.0](//compare/0.5.0...0.6.0) (2015-09-21 16:39:52 +0200)
 
 
 ### Bug Fixes
