@@ -153,6 +153,8 @@
       return this.each(function() {
         var target = this;
 
+        $(target).attr('data-pie-chart', '');
+
         // Total chart value
         var total = 0;
 
