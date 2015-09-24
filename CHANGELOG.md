@@ -1,10 +1,20 @@
-<a name="0.6.0"></a>
-# [0.6.0](//compare/0.6.0...v0.6.0) (2015-09-24)
+<a name="0.7.0"></a>
+# [0.7.0](//compare/0.7.0...v0.7.0) (2015-09-24)
+
+
+
+
+<a name="0.7.0"></a>
+# [0.7.0](//compare/0.6.0...0.7.0) (2015-09-24 17:41:34 +0200)
 
 
 ### Bug Fixes
 
 * Set chart's inner text boldness to 600; Update the dist files [193b6c4](https://github.com/the-software-factory/jquery-chart/commit/193b6c49072c3b2d99e394a653e4b5c7b671934e) 
+
+### Features
+
+* Added css3 rules to the pie chart [6190d10](https://github.com/the-software-factory/jquery-chart/commit/6190d10e9cb6e187dffb0c609d6999fd49f6b0d9) 
 
 
 
