@@ -133,7 +133,10 @@ $(selector).chart(
     + Type: `Number`
     + Default: Chart container's width
     + Description: The width of the chart in pixels
-
+- backgroundColor
+    + Type: `String`
+    + Default: `#fff`
+    + Description: The background color of the chart (Can be either HTML color name or HEX RGB code)
 
 #### Example Pie chart usage:
 ```js
@@ -214,7 +217,10 @@ The available options are:
     + Type: `Number`
     + Default: Chart container's height
     + Description: The height of the chart in pixels
-
+- backgroundColor
+    + Type: `String`
+    + Default: `#fff`
+    + Description: The background color of the chart (Can be either HTML color name or HEX RGB code)
 
 #### Example Stacked Bar chart usage:
 ```js

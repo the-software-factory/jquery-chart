@@ -80,6 +80,9 @@
           $wrapper.appendTo(target)
         );
 
+        // // Set the background color of the chart
+        $canvas.css('background-color', _settings.backgroundColor);
+
         $canvas.height(_settings.height ? _settings.height : $(target).height());
         $canvas.width(_settings.width ? _settings.width : $(target).width());
 
@@ -167,6 +170,9 @@
           });
         }
 
+        // Set the background color of the chart
+        $(target).css('background-color', _settings.backgroundColor);
+
         // Set the height of the parent of all bar elements
         $(target).height(typeof _settings.height === "number" ? _settings.height : $(target).height());
 
@@ -227,6 +233,13 @@
    * @type {Object}
    */
   $.fn.chart.defaults = {
+
+    /**
+     * Background color of the chart (HTML name or HEX RGB code)
+     *
+     * @type {String}
+     */
+    backgroundColor: '#fff',
 
     /**
      * Time (in milliseconds) of chart animation
