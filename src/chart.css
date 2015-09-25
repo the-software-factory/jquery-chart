@@ -21,11 +21,11 @@
   transition: height 1s;
 }
 
-[data-pie-chart] > * {
+[data-chart] > * {
   border-right: 2px solid white;
   box-sizing: border-box;
 }
 
-[data-pie-chart] > *:last-of-type {
+[data-chart] > *:last-of-type {
   border-right: 0;
 }

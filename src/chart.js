@@ -156,7 +156,7 @@
       return this.each(function() {
         var target = this;
 
-        $(target).attr('data-pie-chart', '');
+        $(target).attr('data-chart', '');
 
         // Total chart value
         var total = 0;
@@ -170,8 +170,9 @@
           });
         }
 
-        // Set the background color of the chart
+        // Set the background and border colors of the chart
         $(target).css('background-color', _settings.backgroundColor);
+        $(target).css('border-color', _settings.backgroundColor);
 
         // Set the height of the parent of all bar elements
         $(target).height(typeof _settings.height === "number" ? _settings.height : $(target).height());
@@ -190,6 +191,7 @@
             $(document.createElement('div')).height('100%')
               .css({
                 "background-color": item.color,
+                "border-right-color": _settings.backgroundColor,
                 "display": "inline-block",
                 "vertical-align": "top"
               })
