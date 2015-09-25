@@ -1,6 +1,20 @@
-<a name="0.7.0"></a>
-# [0.7.0](//compare/0.7.0...v0.7.0) (2015-09-24)
+<a name="0.8.0"></a>
+# [0.8.0](//compare/0.8.0...v0.8.0) (2015-09-25)
 
+
+### Features
+
+* Background color option added [4c917ee](https://github.com/the-software-factory/jquery-chart/commit/4c917eef071216557548e21c6ecab0d118dd84ee) 
+
+
+
+<a name="0.8.0"></a>
+# [0.8.0](//compare/0.7.0...0.8.0) (2015-09-24 18:16:11 +0200)
+
+
+### Features
+
+* Added border color to the stacked chart [96960e8](https://github.com/the-software-factory/jquery-chart/commit/96960e872c1c2b4379de54111ffa4d2f24ad0e9c) 
 
 
 
