@@ -14,7 +14,7 @@
     font-weight: 600;
 }
 
-[data-pie-chart] {
+[data-chart] {
   -o-transition: height 1s;
   -moz-transition: height 1s;
   -webkit-transition: height 1s;
