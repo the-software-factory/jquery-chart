@@ -1,6 +1,10 @@
-<a name="0.9.0"></a>
-# [0.9.0](//compare/0.9.0...v0.9.0) (2015-09-28)
+<a name="0.9.1"></a>
+## [0.9.1](//compare/0.9.0...v0.9.1) (2015-09-28)
 
+
+### Bug Fixes
+
+* Fixed chart css animation [be6d15b](https://github.com/the-software-factory/jquery-chart/commit/be6d15b1cab9a53648b620e734215cefab32d793) 
 
 
 
