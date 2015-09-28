@@ -1,10 +1,17 @@
-<a name="0.8.0"></a>
-# [0.8.0](//compare/0.8.0...v0.8.0) (2015-09-25)
+<a name="0.9.0"></a>
+# [0.9.0](//compare/0.9.0...v0.9.0) (2015-09-28)
+
+
+
+
+<a name="0.9.0"></a>
+# [0.9.0](//compare/0.8.0...0.9.0) (2015-09-28 15:57:48 +0200)
 
 
 ### Features
 
 * Background color option added [4c917ee](https://github.com/the-software-factory/jquery-chart/commit/4c917eef071216557548e21c6ecab0d118dd84ee) 
+* Released version 0.9.0 [be81033](https://github.com/the-software-factory/jquery-chart/commit/be81033fb98b048baa9aaa83f9278a812eab658c) 
 
 
 
