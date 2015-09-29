@@ -1,5 +1,21 @@
+<a name="0.9.2"></a>
+## [0.9.2](//compare/0.9.2...v0.9.2) (2015-09-29)
+
+
+
+
+<a name="0.9.2"></a>
+## [0.9.2](//compare/0.9.1...0.9.2) (2015-09-29 10:58:05 +0200)
+
+
+### Bug Fixes
+
+* Released version 0.9.2 [26687f4](https://github.com/the-software-factory/jquery-chart/commit/26687f400a49a8bcb610dfba68179ef6cc03868d) 
+
+
+
 <a name="0.9.1"></a>
-## [0.9.1](//compare/0.9.0...v0.9.1) (2015-09-28)
+## [0.9.1](//compare/0.9.0...0.9.1) (2015-09-28 18:20:46 +0200)
 
 
 ### Bug Fixes
