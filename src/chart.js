@@ -240,13 +240,15 @@
      * Background color of the chart (HTML name or HEX RGB code)
      *
      * @type {String}
+     * @default ''
      */
-    backgroundColor: '#fff',
+    backgroundColor: '',
 
     /**
      * Time (in milliseconds) of chart animation
      *
      * @type {number}
+     * @default 300
      */
     animationTime: 300,
 
@@ -254,6 +256,7 @@
      * Animation easing effect
      *
      * @type {string}
+     * @default 'linear'
      */
     animationEasing: "linear",
 
@@ -261,6 +264,7 @@
      * Template string within chart
      *
      * @type {string}
+     * @default ''
      */
     innerTextTemplate: "",
 
@@ -268,6 +272,7 @@
      * Determines whether to draw tooltips on the canvas or not
      *
      * @type {boolean}
+     * @default true
      */
     showTooltips: true,
 
@@ -275,6 +280,7 @@
      * Template string for single tooltips
      *
      * @type {string}
+     * @default '<%= value %>'
      */
     tooltipTemplate: "<%= value %>",
 
@@ -283,6 +289,7 @@
      * no DOM manipulations happens at all - the plugin simply return the result set.
      *
      * @type {boolean}
+     * @default true
      */
     skipIfEmpty: true
   };
