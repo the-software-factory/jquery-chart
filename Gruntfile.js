@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 
             return "/*\n" +
               " * JS Chart v" + latestTag + " (https://github.com/the-software-factory/js-chart)\n" +
-              " * Copyright " + ((firstYear === lastYear) ? firstYear : (firstYear + "-" + lastYear)) + " Vendini srl\n" +
+              " * Copyright " + ((firstYear === lastYear) ? firstYear : (firstYear + "-" + lastYear)) + " The Software Factory\n" +
               " * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)\n" +
               " */";
             }
