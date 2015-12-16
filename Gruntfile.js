@@ -5,6 +5,8 @@ var fs = require('fs');
 // Defines build process
 module.exports = function(grunt) {
 
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
     cssmin: {
       style: {
@@ -22,12 +24,11 @@ module.exports = function(grunt) {
           position: 'top',
           linebreak: true,
           process: function() {
-            var latestTag = execSync("git describe --tags").toString().split('-')[0].replace("\n", "");
             var firstYear = "2015";
             var lastYear = execSync("git log --format='%ai' | head -n 1").toString().split('-')[0];
 
             return "/*\n" +
-              " * JS Chart v" + latestTag + " (https://github.com/the-software-factory/js-chart)\n" +
+              " * JS Chart v" + pkg.version + " (https://github.com/the-software-factory/js-chart)\n" +
               " * Copyright " + ((firstYear === lastYear) ? firstYear : (firstYear + "-" + lastYear)) + " The Software Factory\n" +
               " * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)\n" +
               " */";

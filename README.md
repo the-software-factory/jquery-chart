@@ -284,6 +284,15 @@ Here is a list of grunt `tasks` => `actions` mappings, see below for a deeper ex
 * *conventionalChangelog*: Appends Markdown-formatted changelog history to CHANGELOG.md
 * *changelogCommit*: Prepares a new commit with updated CHANGELOG.md and commit message "CHANGELOG.md Updated"
 
+## Releasing a new version
+- Update the `x.y.z` versions in `bower.json` and `package.json`
+- Build the library by running `grunt`
+- Commit the build with `git add .` and `git commit`
+- Tag the build with `git tag x.y.z`, where `x.y.z` is the version use specified before in the JSON files
+- Push the build with `git push origin BRANCH --tags`, where `BRANCH` is your feture branch name
+- Done!
+
+
 ## Tests
 Take a look at [`test/README.md`](test/README.md) for more details.
 
