@@ -133,9 +133,11 @@
 
         // Maximum (and default) font size
         var maxFontSize = 30;
+        // The minimum distante between the inner text and chart's inner circle in pixels
+        var innerTextMargin = 5;
 
         // Calculates the width of the space inside the doughnut
-        var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout;
+        var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout - (innerTextMargin * 2);
         // Gets the inner text DIV container
         var innerTextContainer = $(this).find(".chartjs-inner-text");
         // Sets the width of the innerTextContainer to which the font size will be adaptated
