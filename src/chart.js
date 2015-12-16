@@ -80,8 +80,16 @@
           $wrapper.appendTo(target)
         );
 
-        // // Set the background color of the chart
+        // If the background color was not specified then use the container's one
+        if (_settings.backgroundColor === '') {
+          _settings.backgroundColor = $(target).css('background-color') ;
+        }
+
+        // Set the background color of the chart
         $canvas.css('background-color', _settings.backgroundColor);
+        // We can't just use the transparent stroke color as it's drawn on the top of segments.
+        // So we use the same color as used for the background.
+        _settings.segmentStrokeColor = _settings.backgroundColor;
 
         $canvas.height(_settings.height ? _settings.height : $(target).height());
         $canvas.width(_settings.width ? _settings.width : $(target).width());
@@ -125,9 +133,11 @@
 
         // Maximum (and default) font size
         var maxFontSize = 30;
+        // The minimum distante between the inner text and chart's inner circle in pixels
+        var innerTextMargin = 5;
 
         // Calculates the width of the space inside the doughnut
-        var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout;
+        var innerTextContainerMaxWidth = $(this).width() / 100 * _settings.percentageInnerCutout - (innerTextMargin * 2);
         // Gets the inner text DIV container
         var innerTextContainer = $(this).find(".chartjs-inner-text");
         // Sets the width of the innerTextContainer to which the font size will be adaptated
@@ -168,6 +178,11 @@
           data.forEach(function(item) {
             total += item.value;
           });
+        }
+
+        // If the background color was not specified then use the container's one
+        if (_settings.backgroundColor === '') {
+          _settings.backgroundColor = $(target).css('background-color') ;
         }
 
         // Set the background and border colors of the chart
