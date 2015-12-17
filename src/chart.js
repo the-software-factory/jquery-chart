@@ -201,17 +201,19 @@
           var barPercentageValue = item.value / total * 100;
           allBarsPercentageLength += barPercentageValue;
 
-          // Inject a div for the current bar
-          $(target).append(
-            $(document.createElement('div')).height('100%')
-              .css({
-                "background-color": item.color,
-                "border-right-color": _settings.backgroundColor,
-                "display": "inline-block",
-                "vertical-align": "top"
-              })
-              .data("stacked-bar-percentage-value", barPercentageValue)
-          );
+          // Inject a div for the current bar if it's value is > 0
+          if (barPercentageValue > 0) {
+            $(target).append(
+              $(document.createElement('div')).height('100%')
+                .css({
+                  "background-color": item.color,
+                  "border-right-color": _settings.backgroundColor,
+                  "display": "inline-block",
+                  "vertical-align": "top"
+                })
+                .data("stacked-bar-percentage-value", barPercentageValue)
+            );
+          }
         });
 
         /**
