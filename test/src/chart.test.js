@@ -1,5 +1,7 @@
 describe("JS Chart test suite", function() {
 
+  var chart;
+
   // Fixtures
   var _chartFixture = "<div id='chart' style='width: 300px; height: 300px'></div>";
 
@@ -17,33 +19,46 @@ describe("JS Chart test suite", function() {
   beforeEach(function() {
     $("body").empty();
     $("body").append(_chartFixture);
+    chart = $("#chart");
 
     $.fn.boxfit = function() {};
   });
 
   it("fires and exception if data supplied is not an array", function() {
     expect(function() {
-      $("#chart").chart({});
+      chart.chart({});
     }).toThrow();
   });
 
   it("fires and exception if supplied data array is empty", function() {
     expect(function() {
-      $("#chart").chart([]);
+      chart.chart([]);
     }).toThrow();
   });
 
 
   describe("stacked bars chart", function() {
     it("has right number of child divs", function() {
-      $("#chart").chart(_chartDataset, _chartOptions);
-      expect($("#chart > div").length).toBe(_chartDataset.length);
+      chart.chart(_chartDataset, _chartOptions);
+      expect(chart.children().length).toBe(_chartDataset.length);
+    });
+
+    it("does not create a child div if it's width is 0", function() {
+      _chartDataset.push({
+        value: 0,
+        color: "rgb(1, 2, 3)"
+      });
+      chart.chart(_chartDataset, _chartOptions);
+      expect(chart.children().length).toBe(3);
+      expect(chart.children().filter(function() {
+          return $(this).css('background-color') === 'rgb(1, 2, 3)';
+      }).length).toBe(0);
     });
 
     it("has the bars with their parent's height", function() {
-      var container = $("#chart").chart(_chartDataset, _chartOptions);
+      var container = chart.chart(_chartDataset, _chartOptions);
       var rightHeight = true;
-      $("#chart > div").each(function() {
+      chart.children().each(function() {
         if ($(this).height() !== container.height()) {
           rightHeight = false;
         }
@@ -52,7 +67,7 @@ describe("JS Chart test suite", function() {
     });
 
     it("with no total value specified has bars of the correct width", function(done) {
-      $("#chart").chart(_chartDataset, _chartOptions);
+      chart.chart(_chartDataset, _chartOptions);
       setTimeout(function() {
         var match = true;
         var totalWidth = 0;
@@ -61,7 +76,7 @@ describe("JS Chart test suite", function() {
         });
         for (var index in _chartDataset) {
           if ((_chartDataset[index].value / totalWidth * 100) !==
-              ($("#chart > div").eq(index).width() / $("#chart").width() * 100)) {
+              (chart.children().eq(index).width() / chart.width() * 100)) {
             match = false;
           }
         }
@@ -72,14 +87,12 @@ describe("JS Chart test suite", function() {
 
     it("uses the specfied color for background and borders", function() {
       _chartOptions.backgroundColor = "rgb(1, 2, 3)";
-      var chart = $("#chart");
       chart.chart(_chartDataset, _chartOptions);
       expect(chart.css("background-color")).toBe("rgb(1, 2, 3)");
       expect(chart.children().first().css("border-right-color")).toBe("rgb(1, 2, 3)");
     });
 
     it("uses container's color for borders if no custom one is specified", function() {
-      var chart = $("#chart");
       chart.css("background-color", "rgb(1, 2, 3");
       chart.chart(_chartDataset, _chartOptions);
       expect(chart.children().first().css("border-right-color")).toBe("rgb(1, 2, 3)");
@@ -92,7 +105,6 @@ describe("JS Chart test suite", function() {
     });
 
     it("creates a wrapper div with a canvas inside", function() {
-      var chart = $("#chart");
       chart.chart(_chartDataset, _chartOptions);
       var wrapper = chart.children().first();
       expect(wrapper.prop("tagName")).toBe("DIV");
@@ -100,7 +112,6 @@ describe("JS Chart test suite", function() {
     });
 
     it("uses container's color for background if no custom one is specified", function() {
-      var chart = $("#chart");
       chart.css("background-color", "rgb(1, 2, 3)");
       chart.chart(_chartDataset, _chartOptions);
       expect(chart.find("canvas").css("background-color")).toBe("rgb(1, 2, 3)");
