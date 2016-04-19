@@ -1,6 +1,6 @@
 .chartjs-tooltip {
     position: absolute;
-    fontSize: '0.75rem',
+    font-size: 0.75rem;
     -webkit-transition: all .1s ease;
     transition: all .1s ease;
     -webkit-transform: translate(-50%, -50%);
