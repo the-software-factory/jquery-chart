@@ -69,9 +69,17 @@
             this.showTooltip(this.segments, true);
           }
         };
-        _settings.percentageInnerCutout = 60;
+        _settings.percentageInnerCutout = _settings.percentageInnerCutout || 60;
         _settings.tooltipEvents = [];
         _settings.tooltipRadialShift = 140;
+
+        // If the specified total is greater than the sum of values, fill the remaining part of the pie chart
+        if (typeof _settings.total === 'number' && isFinite(_settings.total) && _settings.total > _total) {
+          data.push({
+            value: _settings.total - _total,
+            color: _settings.fillColor || _settings.backgroundColor
+          });
+        }
 
         // Creating a div with position relative. This is because otherwise when new elements are added to the page
         // and the chart moves around, the tooltips would remain in the old place instead of the new one.
