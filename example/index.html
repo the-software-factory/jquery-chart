@@ -25,8 +25,8 @@
     <button id="show">Show the other container</button>
     <div>
       <div id="container0" class="container"></div>
-      <div id="container1" class="container" style="background-color: #f7ca4f"></div>
-      <div id="container2" class="container"></div>
+      <!--<div id="container1" class="container" style="background-color: #f7ca4f"></div>
+      <div id="container2" class="container"></div>-->
     </div>
 
     <div>
@@ -41,21 +41,21 @@
       jQuery(document).ready(function($) {
         $('#container0').chart(
           [{
-            value: 3000,
+            value: 200,
             color: "#abc123"
           }, {
-            value: 2000,
+            value: 1000,
             color: "#46BFBD"
           }, {
-            value: 1,
+            value: 500,
             color: "#ba0"
           }], {
             type: 'pie',
             tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
-            innerTextTemplate: '$5,000',
+            innerTextTemplate: '$7,000',
             animationTime: 1000,
-            skipTooltip: function() { return false; },
-            backgroundColor: '#E6F0F5'
+            total: 5000,
+            skipTooltip: function() { return false; }
           }
         );
 
@@ -83,6 +83,7 @@
           value: 0,
           color: "gray"
         }], {
+          segmentShowStroke: false,
           type: 'pie',
           tooltipTemplate: '<%= parseInt(value / 5000 * 100) %>%',
           innerTextTemplate: '$0.00',
@@ -91,16 +92,16 @@
 
         $('#container3').chart(
           [
-            { value: 100, color: "#abc123" },
+            { value: 100, color: "#0000ff44" },
             { value: 75, color: "#46BFBD" },
-            { value: 20, color: "#ccc" },
+            { value: 20, color: "#eee" },
             { value: 0, color: "#f00" }
           ],
           {
             type: 'stacked-bar',
-            total: 300,
+            total: 500,
             height: 50,
-            backgroundColor: '#E6F0F5'
+            backgroundColor: '#ccc'
           }
         );
 

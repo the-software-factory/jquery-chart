@@ -7,7 +7,26 @@ module.exports = function(grunt) {
 
   var pkg = grunt.file.readJSON('package.json');
 
+  var cssFiles = [
+    'src/chart.css'
+  ];
+  var jsFiles = [
+    'bower_components/Chart.js/Chart.js',
+    'bower_components/jquery.boxfit/dist/jquery.boxfit.js',
+    'src/chart.js'
+  ];
+
   grunt.initConfig({
+    concat: {
+      css: {
+        src: cssFiles,
+        dest: 'dist/chart.css'
+      },
+      js: {
+        src: jsFiles,
+        dest: 'dist/chart.js'
+      }
+    },
     cssmin: {
       style: {
         options: {
@@ -15,7 +34,7 @@ module.exports = function(grunt) {
           roundingPrecision: -1,
           keepSpecialComments: 0
         },
-        files: { 'dist/chart.min.css': 'src/chart.css' }
+        files: { 'dist/chart.min.css': cssFiles }
       }
     },
     usebanner: {
@@ -35,13 +54,13 @@ module.exports = function(grunt) {
             }
           },
           files: {
-              src: ['dist/chart.min.css', 'dist/chart.min.js']
+              src: ['dist/chart.min.css', 'dist/chart.css', 'dist/chart.min.js', 'dist/chart.js']
           }
       }
     },
     devserver: {
       options: {
-        port: '9000',
+        port: '9090',
         base: './',
         cache: "no-store",
         async: false
@@ -57,7 +76,7 @@ module.exports = function(grunt) {
     uglify: {
       minification: {
         files: {
-          'dist/chart.min.js': ['bower_components/Chart.js/Chart.min.js', 'bower_components/jquery.boxfit/dist/jquery.boxfit.min.js', 'src/chart.js']
+          'dist/chart.min.js': jsFiles
         }
       }
     },
@@ -66,37 +85,38 @@ module.exports = function(grunt) {
         files: ['Gruntfile.js', 'src/**/*', 'test/**/*.js'],
         tasks: ['default']
       }
-  },
-  conventionalChangelog: {
-    options: {
-      changelogOpts: {
-        preset: 'jshint',
-        releaseCount: 0,
-        transform: function(commit, cb) {
-          if (typeof commit.gitTags === 'string') {
-            var rtag = /tag:\s*[v=]?(.+?)[,\)]/gi;
-            var match = rtag.exec(commit.gitTags);
-            rtag.lastIndex = 0;
-
-            if (match) {
-              commit.version = match[1];
-            }
-          }
-
-          commit.shortDesc += " [" + commit.hash.slice(0, 7) +
-          "](https://github.com/the-software-factory/jquery-chart/commit/" + commit.hash + ")";
-          delete commit.hash;
-
-          cb(null, commit);
-        }
-      }
     },
-    release: {
-      src: 'CHANGELOG.md'
-    }
-  }
-});
+    conventionalChangelog: {
+      options: {
+        changelogOpts: {
+          preset: 'jshint',
+          releaseCount: 0,
+          transform: function(commit, cb) {
+            if (typeof commit.gitTags === 'string') {
+              var rtag = /tag:\s*[v=]?(.+?)[,\)]/gi;
+              var match = rtag.exec(commit.gitTags);
+              rtag.lastIndex = 0;
 
+              if (match) {
+                commit.version = match[1];
+              }
+            }
+
+            commit.shortDesc += " [" + commit.hash.slice(0, 7) +
+            "](https://github.com/the-software-factory/jquery-chart/commit/" + commit.hash + ")";
+            delete commit.hash;
+
+            cb(null, commit);
+          }
+        }
+      },
+      release: {
+        src: 'CHANGELOG.md'
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -132,7 +152,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin', 'usebanner']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin', 'concat', 'usebanner']);
   grunt.registerTask('development', ['default', 'devserver', 'watch']);
   grunt.registerTask("changelog", ["emptyTheChangelog", "conventionalChangelog", "changelogCommit"]);
 };
