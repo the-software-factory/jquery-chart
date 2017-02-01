@@ -1,6 +1,21 @@
-<a name="0.9.2"></a>
-## [0.9.2](//compare/0.9.2...v0.9.2) (2015-09-29)
+<a name="0.11.0"></a>
+# [0.11.0](//compare/0.11.0...v0.11.0) (2017-02-01)
 
+
+
+
+<a name="0.11.0"></a>
+# [0.11.0](//compare/0.9.2...0.11.0) (2017-02-01 11:34:35 +0100)
+
+
+### Bug Fixes
+
+* Add 5px margin between the inner text and the inner pie chart circle [b63de50](https://github.com/the-software-factory/jquery-chart/commit/b63de505cec9849b0100d09483cb82376f196c3d) 
+* Fix wrong version in header; Add release instructions into README.md [b0159a6](https://github.com/the-software-factory/jquery-chart/commit/b0159a6df4febf2139880c00bf26e42eb7011b02) 
+
+### Features
+
+* Display test coverage report after tests are executed [7fc85ca](https://github.com/the-software-factory/jquery-chart/commit/7fc85caf59444c6c33f427056ab84b82e0970725) 
 
 
 
