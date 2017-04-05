@@ -268,7 +268,7 @@
         $(target).css('background-color', _settings.backgroundColor);
         $(target).css('border-color', _settings.backgroundColor);
 
-        // Set the height of the parent of all bar elements
+        // Set the height of the parent of the gradient bar element
         $(target).height(typeof _settings.height === "number" ? _settings.height : $(target).height());
 
         var barPercentageValue = data[0].value;
@@ -278,21 +278,10 @@
           $(target).append(
             $(document.createElement('div')).height('100%')
               .css({
-                /* jshint ignore:start */
-                "background": data[0].color,
-                "background": "-webkit-gradient(linear, right top, left top, from(#FFFFFF), to(" + data[0].color + "))",
-                "background": "-webkit-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
-                "background": "-o-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
-                "background": "-moz-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
-                "filter": "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=" + data[0].color + ", endColorstr=#FFFFFF)",
-                "-ms-filter": "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=" + data[0].color + ", endColorstr=#FFFFFF)",
                 "background": "linear-gradient(to left, #FFFFFF, " + data[0].color + ")",
-                /* jshint ignore:end */
-                "border-right-color": _settings.backgroundColor,
-                "display": "inline-block",
-                "vertical-align": "top"
+                "border-right-color": _settings.backgroundColor
               })
-              .data("stacked-bar-percentage-value", barPercentageValue)
+              .data("gradient-bar-percentage-value", barPercentageValue)
           );
         }
 
@@ -308,7 +297,7 @@
             var bar = bars.get(index);
             $(bar).animate(
               {
-                width: $(bar).data("stacked-bar-percentage-value") + '%'
+                width: $(bar).data("gradient-bar-percentage-value") + '%'
               },
               {
                 duration: _settings.animationTime,
