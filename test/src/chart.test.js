@@ -117,9 +117,6 @@ describe("JS Chart test suite", function() {
     it("does not create the child div if its width is 0", function() {
       chart.chart([{ value: 0, color: 'rgb(1, 2, 3)' }], _options);
       expect(chart.children().length).toBe(0);
-      expect(chart.children().filter(function() {
-        return $(this).css("background", "linear-gradient(to left, #FFFFFF, rgb(1, 2, 3)");
-      }).length).toBe(0);
     });
 
     it("has the bars with their parent's height", function() {
@@ -135,6 +132,21 @@ describe("JS Chart test suite", function() {
         expect(chart.children().first().width()).toBe(container.width() * _data[0].value / 100);
         done();
       }, _options.animationTime + 10);
+    });
+
+    it("uses the background color to make the gradient if specififed", function() {
+      _options.backgroundColor = "rgb(1, 2, 3)";
+      chart.chart(_data, _options);
+      expect(chart.children().filter(function() {
+        return $(this).css("background", "linear-gradient(to left, #5AD3D1, rgb(1, 2, 3)");
+      }).length).toBe(1);
+    });
+
+    it('uses the container color to make the gradient when no background color is specified', function() {
+      chart.chart(_data, _options);
+      expect(chart.children().filter(function() {
+        return $(this).css("background", "linear-gradient(to left, #5AD3D1, #FFFFFF");
+      }).length).toBe(1);
     });
 
     it("uses the specfied color for background and borders", function() {
