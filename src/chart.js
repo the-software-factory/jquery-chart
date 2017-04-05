@@ -278,8 +278,9 @@
           $(target).append(
             $(document.createElement('div')).height('100%')
               .css({
-                "background": "linear-gradient(to left, #FFFFFF, " + data[0].color + ")",
-                "border-right-color": _settings.backgroundColor
+                "background": "linear-gradient(to right, " + data[0].color + ", #FFFFFF)",
+                "border-right-color": _settings.backgroundColor,
+                "display": "inline-block"
               })
               .data("gradient-bar-percentage-value", barPercentageValue)
           );
