@@ -252,6 +252,78 @@
         _animateBar(target, 0);
       });
     }
+
+    if (options.type == 'gradient-bar') {
+      return this.each(function() {
+        var target = this;
+
+        $(target).attr('data-chart', '');
+
+        // If the background color was not specified then use the container's one
+        if (_settings.backgroundColor === '') {
+          _settings.backgroundColor = $(target).css('background-color') ;
+        }
+
+        // Set the background and border colors of the chart
+        $(target).css('background-color', _settings.backgroundColor);
+        $(target).css('border-color', _settings.backgroundColor);
+
+        // Set the height of the parent of all bar elements
+        $(target).height(typeof _settings.height === "number" ? _settings.height : $(target).height());
+
+        var barPercentageValue = data[0].value;
+
+        // Inject a div for the bar if its value is > 0
+        if (barPercentageValue > 0) {
+          $(target).append(
+            $(document.createElement('div')).height('100%')
+              .css({
+                /* jshint ignore:start */
+                "background": data[0].color,
+                "background": "-webkit-gradient(linear, right top, left top, from(#FFFFFF), to(" + data[0].color + "))",
+                "background": "-webkit-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
+                "background": "-o-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
+                "background": "-moz-linear-gradient(right, #FFFFFF, " + data[0].color + ")",
+                "filter": "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=" + data[0].color + ", endColorstr=#FFFFFF)",
+                "-ms-filter": "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=" + data[0].color + ", endColorstr=#FFFFFF)",
+                "background": "linear-gradient(to left, #FFFFFF, " + data[0].color + ")",
+                /* jshint ignore:end */
+                "border-right-color": _settings.backgroundColor,
+                "display": "inline-block",
+                "vertical-align": "top"
+              })
+              .data("stacked-bar-percentage-value", barPercentageValue)
+          );
+        }
+
+        /**
+         * Animate Bar at position index
+         *
+         * @param {Object} container
+         * @param {number} index
+         */
+        var _animateBar = function(container, index) {
+          var bars = $(container).children();
+          if (index < bars.length) {
+            var bar = bars.get(index);
+            $(bar).animate(
+              {
+                width: $(bar).data("stacked-bar-percentage-value") + '%'
+              },
+              {
+                duration: _settings.animationTime,
+                easing: _settings.animationEasing,
+                complete: function() {
+                  _animateBar(container, index + 1);
+                }
+              }
+            );
+          }
+        };
+
+        _animateBar(target, 0);
+      });
+    }
   };
 
   /**
