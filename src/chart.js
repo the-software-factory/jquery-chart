@@ -252,6 +252,68 @@
         _animateBar(target, 0);
       });
     }
+
+    if (options.type == 'gradient-bar') {
+      return this.each(function() {
+        var target = this;
+
+        $(target).attr('data-chart', '');
+
+        // If the background color was not specified then use the container's one
+        if (_settings.backgroundColor === '') {
+          _settings.backgroundColor = $(target).css('background-color') ;
+        }
+
+        // Set the background and border colors of the chart
+        $(target).css('background-color', _settings.backgroundColor);
+        $(target).css('border-color', _settings.backgroundColor);
+
+        // Set the height of the parent of the gradient bar element
+        $(target).height(typeof _settings.height === "number" ? _settings.height : $(target).height());
+
+        var barPercentageValue = data[0].value;
+
+        // Inject a div for the bar if its value is > 0
+        if (barPercentageValue > 0) {
+          $(target).append(
+            $(document.createElement('div')).height('100%')
+              .css({
+                "background": "linear-gradient(to right, " + data[0].color + "," + _settings.backgroundColor + ")",
+                "border-right-color": _settings.backgroundColor,
+                "display": "inline-block"
+              })
+              .data("gradient-bar-percentage-value", barPercentageValue)
+          );
+        }
+
+        /**
+         * Animate Bar at position index
+         *
+         * @param {Object} container
+         * @param {number} index
+         */
+        var _animateBar = function(container, index) {
+          var bars = $(container).children();
+          if (index < bars.length) {
+            var bar = bars.get(index);
+            $(bar).animate(
+              {
+                width: $(bar).data("gradient-bar-percentage-value") + '%'
+              },
+              {
+                duration: _settings.animationTime,
+                easing: _settings.animationEasing,
+                complete: function() {
+                  _animateBar(container, index + 1);
+                }
+              }
+            );
+          }
+        };
+
+        _animateBar(target, 0);
+      });
+    }
   };
 
   /**

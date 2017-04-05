@@ -99,6 +99,70 @@ describe("JS Chart test suite", function() {
     });
   });
 
+  describe("gradient bars chart", function() {
+    var _data = [
+      { value: 80, color: "#5AD3D1" }
+    ];
+
+    var _options = {
+      type: 'gradient-bar',
+      animationTime: 500
+    };
+
+    it("has one child div", function() {
+      chart.chart(_data, _options);
+      expect(chart.children().length).toBe(1);
+    });
+
+    it("does not create the child div if its width is 0", function() {
+      chart.chart([{ value: 0, color: 'rgb(1, 2, 3)' }], _options);
+      expect(chart.children().length).toBe(0);
+    });
+
+    it("has the bars with their parent's height", function() {
+      var container = chart.chart(_data, _options);
+      var children = chart.children().first();
+      expect(children.height() === container.height()).toBe(true);
+    });
+
+    it("with no total value specified has bar of the correct width", function(done) {
+      var container = chart.chart(_data, _options);
+      chart.chart(_data, _options);
+      setTimeout(function() {
+        expect(chart.children().first().width()).toBe(container.width() * _data[0].value / 100);
+        done();
+      }, _options.animationTime + 10);
+    });
+
+    it("uses the background color to make the gradient if specififed", function() {
+      _options.backgroundColor = "rgb(1, 2, 3)";
+      chart.chart(_data, _options);
+      expect(chart.children().filter(function() {
+        return $(this).css("background", "linear-gradient(to left, #5AD3D1, rgb(1, 2, 3)");
+      }).length).toBe(1);
+    });
+
+    it('uses the container color to make the gradient when no background color is specified', function() {
+      chart.chart(_data, _options);
+      expect(chart.children().filter(function() {
+        return $(this).css("background", "linear-gradient(to left, #5AD3D1, #FFFFFF");
+      }).length).toBe(1);
+    });
+
+    it("uses the specfied color for background and borders", function() {
+      _options.backgroundColor = "rgb(1, 2, 3)";
+      chart.chart(_data, _options);
+      expect(chart.css("background-color")).toBe("rgb(1, 2, 3)");
+      expect(chart.children().first().css("border-right-color")).toBe("rgb(1, 2, 3)");
+    });
+
+    it("uses container's color for borders if no custom one is specified", function() {
+      chart.css("background-color", "rgb(1, 2, 3");
+      chart.chart(_data, _options);
+      expect(chart.children().first().css("border-right-color")).toBe("rgb(1, 2, 3)");
+    });
+  });
+
   describe("pie chart", function() {
     beforeEach(function() {
       _chartOptions.type = "pie";
