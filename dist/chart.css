@@ -1,5 +1,5 @@
 /*
- * JS Chart v0.12.0 (https://github.com/the-software-factory/js-chart)
+ * JS Chart v0.12.1 (https://github.com/the-software-factory/js-chart)
  * Copyright 2015-2017 The Software Factory
  * Licensed under MIT (https://github.com/the-software-factory/js-chart/blob/master/LICENSE.md)
  */
@@ -28,10 +28,5 @@
 }
 
 [data-chart] > * {
-  border-right: 2px solid white;
   box-sizing: border-box;
-}
-
-[data-chart] > *:last-of-type {
-  border-right: 0;
 }
