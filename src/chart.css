@@ -23,10 +23,5 @@
 }
 
 [data-chart] > * {
-  border-right: 2px solid white;
   box-sizing: border-box;
-}
-
-[data-chart] > *:last-of-type {
-  border-right: 0;
 }
